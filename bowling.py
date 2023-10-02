@@ -9,6 +9,7 @@ class Bowling:
 
     def calculate_point(self):
         
+        ttse
         for frame, points in enumerate(self.frame_table):
         
             #STRIKE
