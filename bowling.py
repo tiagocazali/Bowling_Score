@@ -7,7 +7,7 @@ class Bowling:
     def add_points(self, first_ball, second_ball=0):
         self.frame_table.append([first_ball, second_ball])
 
-    #This function will calculate ALL scores 
+    #This function will calculate ALL scores, It is a rest
     def full_calculate_point(self):
         
         self.score_table.clear() #ERASE all the calculated points and start from zero
@@ -18,10 +18,10 @@ class Bowling:
             if points[0] == 10:
                 self.score_table.append(None)
 
-                #Check if it is a TRIPLE STRIKE
+                #Check if it is a TRIPLE STRIKE (x)(x)(x)
                 if frame >=2: #It is possible only after the 3 frame
-                    if (self.frame_table[frame-1][0] == 10) and (self.frame_table[frame-2][0] == 10): #it is waiting extra points
-                        self.score_table[frame-2] = 30
+                    if (self.frame_table[frame-1][0] == 10) and (self.frame_table[frame-2][0] == 10):
+                        self.score_table[frame-2] = 30   #--> (30)(x)(x)
 
                 #Check if previous frame is waiting for extra points
                 if frame >=1: #You can NOT check the last frame if it is the Fisrt frame
@@ -46,6 +46,11 @@ class Bowling:
                         else:
                             self.score_table[frame-1] = 10 + points[0]
 
+                        #Check if 2 frames ago is waiting for extra points - Duble Strike - (x)(x)(9,1)
+                        if frame >=2: #It is possible only after the 3 frame
+                            if self.score_table[frame-2] is None:
+                                self.score_table[frame-2] = 10 + 10 + points[0]
+
 
             #NORMAL frame - No strike and NO spere
             else:
@@ -54,20 +59,18 @@ class Bowling:
                 #Check if previous frame is waiting for extra points
                 if frame >=1: #You can NOT check the last frame if it is the Fisrt frame
                     
-                    if self.score_table[frame-1] is None: #it is waiting extra points
+                    if self.score_table[frame-1] is None:
                         
                         if self.frame_table[frame-1][0] == 10: #check if the last frame was a Strike
                             self.score_table[frame-1] = 10 + sum(points)
                         else:
                             self.score_table[frame-1] = 10 + points[0]
                         
-                        #Check if 2 frames ago is waiting for extra points - Duble Strike
+                        #Check if 2 frames ago is waiting for extra points - Duble Strike - (x)(x)(1,2)
                         if frame >=2: #It is possible only after the 3 frame
                             if self.score_table[frame-2] is None:
                                 self.score_table[frame-2] = 10 + 10 + points[0]
-                                    
 
-        return True
 
 
     #This function calculates the score only for the new Frame add (last one).
@@ -107,6 +110,11 @@ class Bowling:
                         self.score_table[frame-1] = 20
                     else:
                         self.score_table[frame-1] = 10 + points[0]
+                    
+                    #Check if 2 frames ago is waiting for extra points - Duble Strike - (x)(x)(9,1)
+                    if frame >=2: #It is possible only after the 3 frame
+                        if self.score_table[frame-2] is None:
+                            self.score_table[frame-2] = 10 + 10 + points[0]
 
 
         #NORMAL frame - No strike and NO spere
@@ -123,13 +131,11 @@ class Bowling:
                     else:
                         self.score_table[frame-1] = 10 + points[0]
                     
-                    #Check if 2 frames ago is waiting for extra points - Duble Strike
+                    #Check if 2 frames ago is waiting for extra points - Duble Strike - (x)(x)(3,4)
                     if frame >=2: #It is possible only after the 3 frame
                         if self.score_table[frame-2] is None:
                             self.score_table[frame-2] = 10 + 10 + points[0]
-                                    
 
-        return True
 
 
     def show_frame_table(self):
@@ -144,6 +150,7 @@ class Bowling:
 
 
 player1 = Bowling()
+
 player1.add_points(8,2)
 player1.calculate_frame_point()
 player1.add_points(5,4)
