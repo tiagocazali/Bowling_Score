@@ -120,6 +120,7 @@ player1.show_total_score()
 player1.calculate_points(True)
 player1.show_score_table()
 player1.show_total_score()
+print(player1.score_table[1])
 
 
 
