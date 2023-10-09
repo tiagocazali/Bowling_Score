@@ -51,22 +51,21 @@ class Bowling:
                 if self.frame_table[frame-1][0] == 10: 
                     
                     #Check for Triple Strike - (x)(x)(?)
-                    if (frame>=2) and (self.score_table[frame-1] is None):  #It is possible only after the 3 frame
+                    if (frame>=2) and (self.score_table[frame-2] is None):  #It is possible only after the 3 frame
                         self.score_table[frame-2] = 20 + points[0]
                             
                     #It is NOT Triple, But can be Duble - (x)(x)
-                    else:
-                        if points[0] == 10:
-                            pass  #(None)(None)
+                    if points[0] == 10:
+                        pass  #(None)(None)
 
                         if frame == 9: #Exception - LAST Frame
                             self.score_table[frame-1] = 20 + points[1]
 
-                        #Actual frame is a Normal frame or Spare (x)(9,1)
-                        else:
-                            self.score_table[frame-1] = 10 + points[0] + points[1]
+                    #Actual frame is a Normal frame or Spare (x)(9,1)
+                    else:
+                        self.score_table[frame-1] = 10 + points[0] + points[1]
 
-                #Last frame is Spare
+                #Last frame is Spare - (9,1)(?)
                 else:
                         self.score_table[frame-1] = 10 + points[0]
 
