@@ -20,6 +20,7 @@ You can use the `Bowling` class in your Python projects to keep track of bowling
 1. Import the `Bowling` class in your Python script:
    ```python
    from bowling import Bowling
+   ```
 
 2. Create an instance of the class:
    ```python
@@ -30,6 +31,8 @@ You can use the `Bowling` class in your Python projects to keep track of bowling
    ```python
    game.add_points(10)  # Strike in the first frame
    game.add_points(7, 3)  # Spare in the second frame
+   game.add_points(3, 0) # Normal Frame
+   game.add_points(9, 1, 8) # Last frame 10th, with spere
    ```
 4. Calculate the total score using the calculate_points method:
    ```python
@@ -42,20 +45,21 @@ You can use the `Bowling` class in your Python projects to keep track of bowling
 
 ## Methods
 
-* add_points(self, first_ball, second_ball=0, extra_ball_frame10=0):
+* add_points(first_ball, second_ball=0, extra_ball_frame10=0):
   > Add points for each frame. The extra_ball_frame10 parameter is optional and used for the 10th frame.
 
-* calculate_points(self, full=False):
+* calculate_points():
   > Use this method for calculate the points. It handles strikes, spares, and normal frames.
-  > For DEFAULT it calculates the score for the last frame. If pass the parameter True, it recalculates the entire score;
+  > For DEFAULT it calculates the score only for the last frame. 
+  > If pass the parameter ```True```, it recalculates the entire score;
 
-* show_frame_table(self):
+* show_frame_table():
   > Display the frame table.
 
-* show_score_table(self):
+* show_score_table():
   > Display the score table.
 
-* show_total_score(self):
+* show_total_score():
   > Display the total score for the game.
 
 ## Example
