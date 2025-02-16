@@ -44,7 +44,7 @@ class Bowling:
         
 
         #Check if previous frame is waiting for extra points
-        if frame >=1: #You can NOT check the last frame IF it is the Fisrt frame
+        if frame >=1: #You can NOT check the last frame IF it is the First frame
             if self.score_table[frame-1] is None:
                 
                 #Last frame is Strike (x)(?)
